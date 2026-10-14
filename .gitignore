@@ -1,0 +1,27 @@
+# Kredensial & konfigurasi lokal (JANGAN di-commit)
+config/database.local.php
+.env
+.env.*
+*.pem
+*.key
+
+# Log & file sementara
+*.log
+*.tmp
+*.bak
+*.swp
+*.sql.bak
+error_log
+
+# Arsip hasil build/unduhan
+*.zip
+
+# Editor & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependency (jika nanti memakai Composer)
+/vendor/

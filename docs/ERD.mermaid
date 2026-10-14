@@ -1,0 +1,60 @@
+erDiagram
+    users ||--|| user_profiles : "1 : 1 (FK + UNIQUE)"
+    categories ||--o{ products : "1 : N"
+    products ||--o{ stock_movements : "1 : N"
+    users ||--o{ stock_movements : "1 : N (pencatat)"
+    products ||--o{ product_suppliers : "1 : N"
+    suppliers ||--o{ product_suppliers : "1 : N"
+
+    users {
+        int id PK
+        varchar username UK
+        varchar password_hash
+        enum role "admin|staff"
+        tinyint is_active
+        timestamp created_at
+    }
+    user_profiles {
+        int id PK
+        int user_id FK,UK
+        varchar full_name
+        varchar phone
+        varchar email
+    }
+    categories {
+        int id PK
+        varchar name UK
+        varchar description
+    }
+    suppliers {
+        int id PK
+        varchar name
+        varchar phone
+        varchar email
+        varchar address
+    }
+    products {
+        int id PK
+        int category_id FK
+        varchar sku UK
+        varchar name
+        decimal price
+        int stock
+        int minimum_stock
+        timestamp created_at
+        timestamp updated_at
+    }
+    product_suppliers {
+        int product_id PK,FK
+        int supplier_id PK,FK
+        decimal supplier_price
+    }
+    stock_movements {
+        int id PK
+        int product_id FK
+        int user_id FK
+        enum type "IN|OUT"
+        int quantity
+        varchar note
+        timestamp created_at
+    }
